@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="图论7.1基本概念1.基本概念度1以顶点为端的边的数目 无向图 \Psi:E→\{\{v_1,v_2\}|v_1\in V 且 v_2 \in V \},则称G &#x3D;  为无向图\\ \Psi(e) &#x3D; \{v_1,v_2\}有向图 \Psi:E→V \times V,则称G &#x3D;  为有向图\\ \Psi(e) &#x3D;  V为G的节点集，E为G的边集 G的结点数目称为它的阶 $\Psi$时从边集E到节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论">
+<meta property="og:url" content="http://example.com/2023/02/16/%E5%9B%BE%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Mike&#39;s Blog">
+<meta property="og:description" content="图论7.1基本概念1.基本概念度1以顶点为端的边的数目 无向图 \Psi:E→\{\{v_1,v_2\}|v_1\in V 且 v_2 \in V \},则称G &#x3D;  为无向图\\ \Psi(e) &#x3D; \{v_1,v_2\}有向图 \Psi:E→V \times V,则称G &#x3D;  为有向图\\ \Psi(e) &#x3D;  V为G的节点集，E为G的边集 G的结点数目称为它的阶 $\Psi$时从边集E到节点">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-02-16T10:05:24.000Z">
+<meta property="article:modified_time" content="2023-02-16T10:05:39.165Z">
+<meta property="article:author" content="Mike Dong">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/02/16/%E5%9B%BE%E8%AE%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"http://example.com/2023/02/16/%E5%9B%BE%E8%AE%BA/","path":"2023/02/16/图论/","title":"图论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论 | Mike's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mike's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">图论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">7.1基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%A6"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">无向图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">有向图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.图的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E3%80%81%E9%82%BB%E6%8E%A5"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">关联、邻接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%9C%88%E3%80%81%E5%B9%B3%E8%A1%8C%E8%BE%B9"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">自圈、平行边</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%9B%BE%E3%80%81%E4%BC%AA%E5%9B%BE"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">简单图、伪图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%A6-1"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%87%E8%8A%82%E7%82%B9%E3%80%81%E5%81%B6%E8%8A%82%E7%82%B9%E3%80%81%E5%AD%A4%E7%AB%8B%E7%82%B9%E3%80%81%E7%AB%AF%E7%82%B9"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">奇节点、偶节点、孤立点、端点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%9B%BE"><span class="nav-number">1.1.3.</span> <span class="nav-text">特殊图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">定理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mike Dong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/16/%E5%9B%BE%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mike Dong">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论 | Mike's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-02-16 18:05:24 / Modified: 18:05:39" itemprop="dateCreated datePublished" datetime="2023-02-16T18:05:24+08:00">2023-02-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h1><h2 id="7-1基本概念"><a href="#7-1基本概念" class="headerlink" title="7.1基本概念"></a>7.1基本概念</h2><h3 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h3><h4 id="度"><a href="#度" class="headerlink" title="度"></a>度</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以顶点为端的边的数目</span><br></pre></td></tr></table></figure>
+<h4 id="无向图"><a href="#无向图" class="headerlink" title="无向图"></a>无向图</h4><script type="math/tex; mode=display">
+\Psi:E→\{\{v_1,v_2\}|v_1\in V 且 v_2 \in V \},则称G = <V,E,\Psi> 为无向图\\
+\Psi(e) = \{v_1,v_2\}</script><h4 id="有向图"><a href="#有向图" class="headerlink" title="有向图"></a>有向图</h4><script type="math/tex; mode=display">
+\Psi:E→V \times V,则称G = <V,E,\Psi> 为有向图\\
+\Psi(e) = <v_1,v_2></script><ul>
+<li>V为G的节点集，E为G的边集</li>
+<li>G的结点数目称为它的阶</li>
+<li>$\Psi$时从边集E到节点的偶对（无序或有序）集上的函数</li>
+</ul>
+<h3 id="2-图的基本结构"><a href="#2-图的基本结构" class="headerlink" title="2.图的基本结构"></a>2.图的基本结构</h3><h4 id="关联、邻接"><a href="#关联、邻接" class="headerlink" title="关联、邻接"></a>关联、邻接</h4><ul>
+<li><p>关联: $边e连接v_1和v_2，e与v_1(或v_2)互相关联$</p>
+</li>
+<li><p>邻接: $v_1,v_2既是e的起点，也是e的终点,v_1,v_2邻接\\<br>e_1,e_2与同一个结点关联,e_1,e_2邻接$</p>
+</li>
+</ul>
+<h4 id="自圈、平行边"><a href="#自圈、平行边" class="headerlink" title="自圈、平行边"></a>自圈、平行边</h4><p>G = <V,E,$\Psi$>,$e_1$,$e_2$是G的两条不同边</p>
+<ul>
+<li><p>自圈 ：$与e_1关联的两个节点相同，e_1为自圈$</p>
+</li>
+<li><p>平行边：$\Psi(e_1) = \Psi(e_2)$</p>
+</li>
+</ul>
+<h4 id="简单图、伪图"><a href="#简单图、伪图" class="headerlink" title="简单图、伪图"></a>简单图、伪图</h4><ul>
+<li>简单图：没有自圈，没有平行边</li>
+<li>伪图：有自圈或平行边</li>
+</ul>
+<h4 id="度-1"><a href="#度-1" class="headerlink" title="度"></a>度</h4><ul>
+<li>无向图：$d_{G}(v)$,自圈算两遍</li>
+<li>无向图：<ul>
+<li>出度：以v为起点的边的数目，$d_{G^{+}}(v)$</li>
+<li>入度：以v为终点的边的数目，$d_{G^{-}}(v)$</li>
+</ul>
+</li>
+</ul>
+<p>每增加一条边，总度数加2</p>
+<h4 id="奇节点、偶节点、孤立点、端点"><a href="#奇节点、偶节点、孤立点、端点" class="headerlink" title="奇节点、偶节点、孤立点、端点"></a>奇节点、偶节点、孤立点、端点</h4><ul>
+<li><p>奇结点：度为奇数的结点</p>
+</li>
+<li><p>偶节点：度为偶数的结点</p>
+</li>
+<li><p>孤立点：度为0的结点</p>
+</li>
+<li><p>端点：度为1的结点</p>
+</li>
+</ul>
+<h3 id="特殊图"><a href="#特殊图" class="headerlink" title="特殊图"></a>特殊图</h3><ul>
+<li><p>零图：结点都是孤立的图</p>
+</li>
+<li><p>平凡图：一阶零图</p>
+</li>
+<li><p>d度正则图：所有结点的度均为自然数d的无向图</p>
+</li>
+<li><p>完全无向图：$n \in I_{+}$，如果n阶简单无向图G是n-</p>
+<p>度正则图，记为$K_n$</p>
+</li>
+<li><p>完全有向图：$n \in I_{+}$，每个结点的出度和入度均为n-1的n阶简单有向图</p>
+</li>
+</ul>
+<p>完全图必是正则图，正则图不一定是完全图</p>
+<p>零图也是正则图</p>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><ul>
+<li>握手定理：无向图 G = <V,E,$\Psi$>,有m条边，则$\Sigma_{v \in V} d_{G}(v) = 2m$</li>
+<li><p>7.1.2: 握手定理：有向图 G = <V,E,$\Psi$>,有m条边，则$\Sigma_{v \in V} d_{G^+}(v) = \Sigma_{v \in V} d_{G^-}(v) = m\\\Sigma_{v \in V} d_{G}(v) = 2m $</p>
+</li>
+<li><p>7.1.3 任何无向图中都有偶数个奇结点</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/16/%E9%9B%86%E5%90%88%E8%AE%BA/" rel="prev" title="集合论">
+                  <i class="fa fa-chevron-left"></i> 集合论
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mike Dong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
